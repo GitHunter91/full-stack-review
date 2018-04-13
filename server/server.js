@@ -6,8 +6,8 @@ const session = require('express-session')
 const userController = require('./userController')
 
 const app = express()
-app.use(bodyParser.json())
-app.use(session({
+app.use( bodyParser.json() )
+app.use( session({
    secret: process.env.SESSION_SECRET,
    resave: false,
    saveUninitialized: false,
@@ -16,13 +16,13 @@ app.use(session({
    }
 }))
 
-app.get('/auth/callback', userController.auth)
-app.get('/api/profile', userController.profile)
-app.post('/api/logout', userController.logout)
+app.get( '/auth/callback', userController.authentication )
+app.get( '/api/profile', userController.profile )
+app.post( '/api/logout', userController.logout )
 
 
 const port = 3050
-app.listen(port, (()=>{
-    console.log('Listening on port' + port +  '🚀')
+app.listen( port, (()=>{
+    console.log( 'Listening on port ' + port +  ' 🚀' )
 }))
 
